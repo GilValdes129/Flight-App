@@ -1,3 +1,4 @@
+// Function that changes backgroung Image every 5 seconds
 var i = 0
 var images = []
 var slideTime = 6000
