@@ -74,7 +74,7 @@ function getIATA(){
         }
     };
     
-    /*fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${origin}`, options)
+    fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${origin}`, options)
         .then(function(response){
             return response.json()
         })
@@ -84,7 +84,7 @@ function getIATA(){
             var iataOrigin = data[0].iata_code;
             localStorage.setItem("IataOrigin", iataOrigin)
         })
-        .catch(err => console.error(err));*/
+        .catch(err => console.error(err));
         
     fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${destiny}`, options)
         .then(function(response){
