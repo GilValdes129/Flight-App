@@ -40,7 +40,9 @@ var obtainResults = function (event){
     var destinationInput = destinationEl.value.trim();
     localStorage.setItem("destiny", destinationInput)
     var departureInput = departureEl.value;
+    localStorage.setItem("Departure", departureInput)
     var arrivalInput = returnEl.value;
+    localStorage.setItem("arrival", arrivalInput)
 
     console.log(originInput)
     console.log(destinationInput)
@@ -48,7 +50,7 @@ var obtainResults = function (event){
     console.log(arrivalInput)
 
 
-    if(originInput && destinationInput && departureInput && arrivalInput) {
+    /*if(originInput && destinationInput && departureInput && arrivalInput) {
         getFlights(originInput, destinationInput, departureInput, arrivalInput);
         
         resultsList.textContent = "";
@@ -58,8 +60,8 @@ var obtainResults = function (event){
         departureInput.value = "";
         arrivalInput.value = "";
     } else {
-        warningMessage.classList.remove("hidden");
-    }
+        //agregar texto 
+    }*/
     getIATA()
 };
 
@@ -68,6 +70,8 @@ var obtainResults = function (event){
 function getIATA(){
     const origin = localStorage.getItem("origin")
     const destiny = localStorage.getItem("destiny")
+    const arrival = localStorage.getItem("arrival")
+    const departure = localStorage.getItem("Departure")
     const options = {
         method: 'GET',
         headers: {
@@ -76,30 +80,30 @@ function getIATA(){
         }
     };
     
-    /*fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${origin}`, options)
+    fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${origin}`, options)
         .then(function(response){
             return response.json()
         })
         .then(function(data){
-            console.log(data)
-            console.log(data[0].iata_code)
+            
             var iataOrigin = data[0].iata_code;
             localStorage.setItem("IataOrigin", iataOrigin)
         })
-        .catch(err => console.error(err));*/
+        .catch(err => console.error(err));
         
     fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${destiny}`, options)
         .then(function(response){
             return response.json()
         })
         .then(function(data){
-            console.log(data)
-            console.log(data[0].iata_code)
-            var iataOrigin = data[0].iata_code;
-            localStorage.setItem("IataOrigin", iataOrigin)
+            
+            var iataDestiny = data[0].iata_code;
+            localStorage.setItem("IataDestiny", iataDestiny)
         })
         .catch(err => console.error(err));
-
+    const IATAdestiny = localStorage.getItem("IataDestiny")
+    const IATAorigin = localStorage.getItem("IataOrigin")
+    getFlights(IATAorigin, IATAdestiny, departure, arrival)
 }
 
 
