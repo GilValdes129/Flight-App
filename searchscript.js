@@ -60,7 +60,7 @@ var obtainResults = function (event){
         departureInput.value = "";
         arrivalInput.value = "";
     } else {
-        //agregar texto 
+        warningMessage.classList.remove("hidden");
     }*/
     getIATA()
 };
