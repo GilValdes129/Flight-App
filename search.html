@@ -7,34 +7,40 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Search</title>
 </head>
-<body>
+<body class="bg-indigo-200">
+    <div class="mx-20 lg:mx-5 mt-4">
+        Choose your options and search the best flight for you
+    </div>
+
+    <div class="bg-slate-500">
+        <form action="" id="searchFormContainer" class="mx-20 lg:mx-5 mt-3 p-2 font-sans flex flex-col lg:flex-row justify-center items-center border border-sky-600 rounded-lg bg-sky-600">
+            <div id="container"></div>
     
-    <form action="" id="searchFormContainer" class="m-1 p-1 font-sans flex flex-col justify-center items-center">
+            <label for="origin" class="font-bold">Origin</label>
+            <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your origin"><br>
+    
+            <label for="destination">Destination</label>
+            <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your destination"><br>
+            
+            <label for="departure-date">Departure date</label>
+            <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your departure date"><br>
+    
+            <label for="return-date">Return date</label>
+            <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your return date"><br>
+    
+            <button id= "searchBtn" type="submit" name="submit" class="submit m-1 border border-cyan-700 border-solid rounded-full py-1 px-11 bg-cyan-100 hover:bg-cyan-400 text-cyan-900 text-center text-2xl no-underline" value="Search">✈ Search</button>
+        </form>
+    </div>
+    
 
-        <div id="container" ></div>
-
-        <label for="origin">Origin</label>
-        <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your origin"><br>
-
-        <label for="destination">Destination</label>
-        <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your destination"><br>
-        
-        <label for="departure-date">Departure date</label>
-        <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your departure date"><br>
-
-        <label for="return-date">Return date</label>
-        <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your return date"><br>
-
-        <button id= "searchBtn" type="submit" name="submit" class="submit m-1 border-1 border-cyan-800 border-solid rounded-lg py-1 px-11 bg-cyan-100 hover:bg-cyan-300 hover:text-3xl text-black text-center font-bold text-2xl no-underline" value="Search"> Search Flights</button>
-
-    </form>
+    <div class="flex justify-center">
+        <p id="warningMessage" class="font-bold text-lg text-red-500 hidden">Please fill out all the inputs before proceeding</p>
+    </div>
 
     <table>
-        <th> Search Results</th>
+        <th>Search Results</th>
         <tbody id="resultsList"></tbody>
     </table>
-
-
 
     <script src="searchScript.js"></script>
     <script type="text/JavaScript" src="https://www.kayak.com/affiliate/widget-v2.js"></script>

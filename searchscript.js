@@ -6,6 +6,8 @@ var destinationEl = document.getElementById("destination");
 var departureEl = document.getElementById("departure-date");
 var returnEl = document.getElementById("return-date");
 
+var warningMessage = document.getElementById("warningMessage");
+
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
@@ -56,7 +58,7 @@ var obtainResults = function (event){
         departureInput.value = "";
         arrivalInput.value = "";
     } else {
-        //agregar texto 
+        warningMessage.classList.remove("hidden");
     }
     getIATA()
 };
