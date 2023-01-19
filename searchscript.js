@@ -11,8 +11,8 @@ var warningMessage = document.getElementById("warningMessage");
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
-    var apiUrl = "https://skyscanner44.p.rapidapi.com/search?adults=1&origin=" + originInput + "&destination=" + destinationInput + "departureDate=" + departureInput + "&returnDate=" + arrivalInput + "&currency=EUR";
-console.log(apiUrl)
+    var apiUrl = "https://skyscanner44.p.rapidapi.com/search?adults=1&origin=" + originInput + "&destination=" + destinationInput + "&departureDate=" + departureInput + "&returnDate=" + arrivalInput + "&currency=EUR";
+
 
 const options = {
     method: 'GET',
@@ -23,11 +23,16 @@ const options = {
 };
 
 fetch(apiUrl, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)    
+        
+    })
     .catch(err => console.error(err));
 
-console.log(response)
+
 
 }
 
@@ -40,9 +45,9 @@ var obtainResults = function (event){
     var destinationInput = destinationEl.value.trim();
     localStorage.setItem("destiny", destinationInput)
     var departureInput = departureEl.value;
-    localStorage.setItem("Departure", departureInput)
+    localStorage.setItem("Departure", dayjs(departureInput).format("YYYY-MM-DD"))
     var arrivalInput = returnEl.value;
-    localStorage.setItem("arrival", arrivalInput)
+    localStorage.setItem("arrival", dayjs(arrivalInput).format("YYYY-MM-DD"))
 
     console.log(originInput)
     console.log(destinationInput)
@@ -50,8 +55,8 @@ var obtainResults = function (event){
     console.log(arrivalInput)
 
 
-    /*if(originInput && destinationInput && departureInput && arrivalInput) {
-        getFlights(originInput, destinationInput, departureInput, arrivalInput);
+    if(originInput && destinationInput && departureInput && arrivalInput) {
+        //getFlights(originInput, destinationInput, departureInput, arrivalInput);
         
         resultsList.textContent = "";
     
@@ -61,7 +66,7 @@ var obtainResults = function (event){
         arrivalInput.value = "";
     } else {
         warningMessage.classList.remove("hidden");
-    }*/
+    }
     getIATA()
 };
 
@@ -86,7 +91,7 @@ function getIATA(){
         })
         .then(function(data){
             
-            var iataOrigin = data[0].iata_code;
+            var iataOrigin = data[1].iata_code;
             localStorage.setItem("IataOrigin", iataOrigin)
         })
         .catch(err => console.error(err));
@@ -97,12 +102,16 @@ function getIATA(){
         })
         .then(function(data){
             
-            var iataDestiny = data[0].iata_code;
+            var iataDestiny = data[1].iata_code;
             localStorage.setItem("IataDestiny", iataDestiny)
         })
         .catch(err => console.error(err));
     const IATAdestiny = localStorage.getItem("IataDestiny")
     const IATAorigin = localStorage.getItem("IataOrigin")
+    console.log(IATAdestiny)
+    console.log(IATAorigin)
+    console.log(arrival)
+    console.log(departure)
     getFlights(IATAorigin, IATAdestiny, departure, arrival)
 }
 
