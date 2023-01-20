@@ -70,9 +70,50 @@ var obtainResults = function (event){
     } else {
         warningMessage.classList.remove("hidden");
     }
-    getIATA()
+    //getIATA()
+    getCoordinates(destinationInput)
 };
 
+//Function to get the longitude and latitude from the city, also can be upgradable to get the weather.
+function getCoordinates(city){
+   var getinfo = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=33914f843cb7f4d9a146b4cb8ba2a07b`
+   fetch(getinfo)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data)
+            console.log(data.coord)
+            var lat = data.coord.lat
+            var lon = data.coord.lon
+            var sumSign = "%2B"
+            if(lon < 0){
+                sumSign = ""
+            }
+            var coordinates = `${lat}${sumSign}${lon}`
+            console.log(coordinates)
+            getCityInfo(coordinates)
+        })
+}
+
+function getCityInfo(coordinates){
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '6bc56a2ecbmsh4a17f4b38d52cc9p12909bjsn625ca3df7444',
+            'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+        }
+    };
+    
+    fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?location=${coordinates}`, options)
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data)
+        })
+        .catch(err => console.error(err));
+}
 
 //getIATA function to change destination & origin input into IATA 
 function getIATA(){
