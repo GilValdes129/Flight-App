@@ -7,15 +7,7 @@ var departureEl = document.getElementById("departure-date");
 var returnEl = document.getElementById("return-date");
 
 var warningMessage = document.getElementById("warningMessage");
-var flightOptions = [{
-    best: {
-        destination:
-        arrival:
-        
-        price:
 
-    }
-}]
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
@@ -35,16 +27,24 @@ fetch(apiUrl, options)
         return response.json()
     })
     .then(function(data){
-        console.log(data)
-        console.log(data.itineraries.buckets[0].items[0].price.formatted) //price path
-        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name) //airline path    
-        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name) //destination path
-        console.log(data.itineraries.buckets[0].items[0].legs[0].departure) //Departure path
-        console.log(data.itineraries.buckets[0].items[0].legs[0].durationInMinutes) // Duration path
-        console.log(data.itineraries.buckets[0].items[0].legs[0].arrival) //Arrival Path
-        console.log(data.itineraries.buckets[0].items[0].legs[0].stopCount) //Escalas Path
-        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name) //Escala Destination
+        console.log(data);
+        console.log(data.itineraries.buckets[0].items[0].price.formatted); //price - correct
+        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name);  // Airline - correct
+        console.log(data.itineraries.buckets[0].items[0].legs[0].departure); //Departure Time path - Correct
+        console.log(data.itineraries.buckets[0].items[0].legs[0].origin.name); // Departure Airport 
+        console.log(data.itineraries.buckets[0].items[0].legs[0].durationInMinutes); // Duration path in Minutes - Correct
+        console.log(data.itineraries.buckets[0].items[0].legs[0].arrival); //Arrival Time Path - Correct
+        console.log(data.itineraries.buckets[0].items[0].legs[0].destination.name); // Arrival Airport 
+        console.log(data.itineraries.buckets[0].items[0].legs[0].stopCount); //Escalas Path - correct
+        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name); //Escala Destination - correct
     })
+    // var flightOptions = [{
+    //     best: {
+    //         destination: "data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name";
+    //         arrival: data.itineraries.buckets[0].items[0].legs[0].arrival
+    //         price: data.itineraries.buckets[0].items[0].price.formatted
+    //     }
+    // }]
     .catch(err => console.error(err));
 }
 
@@ -178,7 +178,7 @@ function getIATA(){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '25b137be54mshdb1f4ed297e9561p1d515fjsnf670af0dee0e',
+            'X-RapidAPI-Key': 'b3b89a7969mshd108a04b837f3e6p15cb70jsn3915c1614c4c',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }
     };
