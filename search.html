@@ -17,16 +17,16 @@
             <div id="container"></div>
     
             <label for="origin" class="font-bold">Origin</label>
-            <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your origin"><br>
+            <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your origin">
     
             <label for="destination" class="font-bold">Destination</label>
-            <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your destination"><br>
+            <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your destination">
             
             <label for="departure-date" class="font-bold">Departure date</label>
-            <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your departure date"><br>
+            <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your departure date">
     
             <label for="return-date" class="font-bold">Return date</label>
-            <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your return date"><br>
+            <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your return date">
     
             <button id= "searchBtn" type="submit" name="submit" class="submit m-1 border border-cyan-700 border-solid rounded-full py-1 px-11 bg-cyan-100 hover:bg-cyan-400 text-cyan-900 text-center text-xl no-underline" value="Search">✈ Search</button>
         </form>
@@ -37,28 +37,30 @@
     </div>
 
 <div class="flex flex-col flex-wrap">
-    <p class="justify-end">Conversion rate</p>
+    <p class="text-right p-3">Conversion rate</p>
 
-    <div class="flex flex-wrap justify-center w-full align-items">
+    <div class="flex flex-wrap justify-center w-full align-items gap-5">
         
-        <div id="bestResultContainer" class="">
-            <h3 class="border border-cyan-700 border-solid rounded-lg bg-cyan-700 text-white font-bold">Best</h3>
-            <div id="bestResult" class="border border-cyan-700 border-solid rounded-lg">test text</div>
+        <div id="bestResultContainer" class="wx-1/4 mx-3">
+            <h3 class="border-cyan-700 border-solid border-b-0 rounded-lg bg-cyan-700 text-white font-bold">Best</h3>
+            <div id="bestResult" class="border-x border-b border-cyan-700 border-solid rounded-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, dignissimos?</div>
         </div>
 
-        <div id="cheapestResultContainer">
+        <div id="cheapestResultContainer" class="wx-1/4 mx-3">
             <h3 class="border border-cyan-700 border-solid rounded-lg bg-cyan-700 text-white font-bold">Cheapest</h3>
-            <div id="CheapestResult" class="border border-cyan-700 border-solid rounded-lg">test text</div>
+            <ul id="CheapestResult" class="border border-cyan-700 border-solid rounded-lg">
+                
+            </div>
         </div>
 
-        <div id="fastestResultContainer">
+        <div id="fastestResultContainer" class="wx-1/4 mx-3">
             <h3 class="border border-cyan-700 border-solid rounded-lg bg-cyan-700 text-white font-bold">Fastest</h3>
-            <div id="fastestResult" class="border border-cyan-700 border-solid rounded-lg">test text</div>
+            <div id="fastestResult" class="border border-cyan-700 border-solid rounded-lg">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, iste necessitatibus omnis eaque consequuntur ab.</div>
         </div>
         
-        <div id="directResultContainer">
+        <div id="directResultContainer" class="wx-1/4 mx-3">
             <h3 class="border border-cyan-700 border-solid rounded-lg bg-cyan-700 text-white font-bold">Direct</h3>
-            <div id="directResult" class="border border-cyan-700 border-solid rounded-lg">test text</div>
+            <div id="directResult" class="border border-cyan-700 border-solid rounded-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit!</div>
         </div>
 
     </div>
