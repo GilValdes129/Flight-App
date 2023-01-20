@@ -56,7 +56,7 @@ var obtainResults = function (event){
 
 
     if(originInput && destinationInput && departureInput && arrivalInput) {
-        getFlights(originInput, destinationInput, departureInput, arrivalInput);
+        //getFlights(originInput, destinationInput, departureInput, arrivalInput);
         
        // resultsList.textContent = "";
     
@@ -67,7 +67,7 @@ var obtainResults = function (event){
     } else {
         warningMessage.classList.remove("hidden");
     }
-    //getIATA()
+    getIATA()
     getCoordinates(destinationInput)
 };
 
@@ -194,10 +194,6 @@ function getIATA(){
         .catch(err => console.error(err));
     const IATAdestiny = localStorage.getItem("IataDestiny")
     const IATAorigin = localStorage.getItem("IataOrigin")
-    console.log(IATAdestiny)
-    console.log(IATAorigin)
-    console.log(arrival)
-    console.log(departure)
     getFlights(IATAorigin, IATAdestiny, departure, arrival)
 }
 
