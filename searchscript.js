@@ -131,7 +131,7 @@ function getCurrency (isoCode){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '4ff2d536b3mshf520961f015e819p16389fjsn7b0df2ef4acf',
+            'X-RapidAPI-Key': '19c6a101cemsh067d5382299249cp1602a4jsn5c1586b20d97',
             'X-RapidAPI-Host': 'currencies-and-countries.p.rapidapi.com'
         }
     };
@@ -154,7 +154,7 @@ function currencyConvertion(currency) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '4ff2d536b3mshf520961f015e819p16389fjsn7b0df2ef4acf',
+            'X-RapidAPI-Key': '6bc56a2ecbmsh4a17f4b38d52cc9p12909bjsn625ca3df7444',
             'X-RapidAPI-Host': 'currencies-and-countries.p.rapidapi.com'
         }
     };
@@ -180,7 +180,7 @@ function getIATA(){
         headers: {
             'X-RapidAPI-Key': 'b3b89a7969mshd108a04b837f3e6p15cb70jsn3915c1614c4c',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
-        }
+        }   
     };
     
     fetch(`https://skyscanner44.p.rapidapi.com/autocomplete?query=${origin}`, options)
