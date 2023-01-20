@@ -7,7 +7,9 @@ var departureEl = document.getElementById("departure-date");
 var returnEl = document.getElementById("return-date");
 
 var warningMessage = document.getElementById("warningMessage");
-
+var flightOptions = [{
+    name: "best"
+}]
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
@@ -17,7 +19,7 @@ var getFlights = function (originInput, destinationInput, departureInput, arriva
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '0e64ed8ee1mshed53c702e8ef267p1b57ffjsnc18f0a9c4ac3',
+        'X-RapidAPI-Key': '25b137be54mshdb1f4ed297e9561p1d515fjsnf670af0dee0e',
         'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
     }
 };
@@ -27,7 +29,8 @@ fetch(apiUrl, options)
         return response.json()
     })
     .then(function(data){
-        console.log(data)    
+        console.log(data)
+        console.log(data.itineraries.buckets)      
         
     })
     .catch(err => console.error(err));
@@ -80,7 +83,7 @@ function getIATA(){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '0e64ed8ee1mshed53c702e8ef267p1b57ffjsnc18f0a9c4ac3',
+            'X-RapidAPI-Key': '25b137be54mshdb1f4ed297e9561p1d515fjsnf670af0dee0e',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }
     };
