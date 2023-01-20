@@ -8,7 +8,13 @@ var returnEl = document.getElementById("return-date");
 
 var warningMessage = document.getElementById("warningMessage");
 var flightOptions = [{
-    name: "best"
+    best: {
+        destination:
+        arrival:
+        
+        price:
+
+    }
 }]
 
 //Funtion to add origin input to URL
@@ -19,9 +25,9 @@ var getFlights = function (originInput, destinationInput, departureInput, arriva
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '25b137be54mshdb1f4ed297e9561p1d515fjsnf670af0dee0e',
-        'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
-    }
+		'X-RapidAPI-Key': 'b3b89a7969mshd108a04b837f3e6p15cb70jsn3915c1614c4c',
+		'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
+	}
 };
 
 fetch(apiUrl, options)
@@ -30,8 +36,14 @@ fetch(apiUrl, options)
     })
     .then(function(data){
         console.log(data)
-        console.log(data.itineraries.buckets)      
-        
+        console.log(data.itineraries.buckets[0].items[0].price.formatted) //price path
+        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name) //airline path    
+        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name) //destination path
+        console.log(data.itineraries.buckets[0].items[0].legs[0].departure) //Departure path
+        console.log(data.itineraries.buckets[0].items[0].legs[0].durationInMinutes) // Duration path
+        console.log(data.itineraries.buckets[0].items[0].legs[0].arrival) //Arrival Path
+        console.log(data.itineraries.buckets[0].items[0].legs[0].stopCount) //Escalas Path
+        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name) //Escala Destination
     })
     .catch(err => console.error(err));
 }
