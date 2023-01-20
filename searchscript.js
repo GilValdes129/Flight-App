@@ -34,9 +34,6 @@ fetch(apiUrl, options)
         
     })
     .catch(err => console.error(err));
-
-
-
 }
 
 
@@ -59,9 +56,9 @@ var obtainResults = function (event){
 
 
     if(originInput && destinationInput && departureInput && arrivalInput) {
-        //getFlights(originInput, destinationInput, departureInput, arrivalInput);
+        getFlights(originInput, destinationInput, departureInput, arrivalInput);
         
-        resultsList.textContent = "";
+       // resultsList.textContent = "";
     
         originInput.value = "";
         destinationInput.value = "";
@@ -110,10 +107,55 @@ function getCityInfo(coordinates){
             return response.json()
         })
         .then(function(data){
-            console.log(data)
-        })
+            var isoCode = data.data[0].countryCode
+            console.log(isoCode)
+
+            getCurrency(isoCode);
+            })
         .catch(err => console.error(err));
 }
+
+function getCurrency (isoCode){
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '4ff2d536b3mshf520961f015e819p16389fjsn7b0df2ef4acf',
+            'X-RapidAPI-Host': 'currencies-and-countries.p.rapidapi.com'
+        }
+    };
+
+    fetch('https://currencies-and-countries.p.rapidapi.com/getCountryInfo?param=ISO&value='+ isoCode, options)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        var currency = data.currency
+        console.log(currency)
+
+        currencyConvertion(currency);
+    })
+    .catch(err => console.error(err));
+    
+};
+
+function currencyConvertion(currency) {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '4ff2d536b3mshf520961f015e819p16389fjsn7b0df2ef4acf',
+            'X-RapidAPI-Host': 'currencies-and-countries.p.rapidapi.com'
+        }
+    };
+    fetch('https://currencies-and-countries.p.rapidapi.com/convertWithSymbol?from=' + currency + '&to=MXN&amount=1', options)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+    })
+    .catch(err => console.error(err));
+}
+
 
 //getIATA function to change destination & origin input into IATA 
 function getIATA(){
