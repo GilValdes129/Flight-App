@@ -8,6 +8,8 @@ var returnEl = document.getElementById("return-date");
 
 var warningMessage = document.getElementById("warningMessage");
 
+var conversionRate = document.getElementById("conversion-rate");
+
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
@@ -164,6 +166,12 @@ function currencyConvertion(currency) {
     })
     .then(function(data){
         console.log(data)
+        var mxnValue = data.result
+        var mxnSymbol = data.symbol
+        console.log(mxnValue)
+        console.log(mxnSymbol)
+
+        conversionRate.textContent= currency + "=" + mxnValue + mxnSymbol
     })
     .catch(err => console.error(err));
 }
