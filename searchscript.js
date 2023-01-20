@@ -115,6 +115,13 @@ function getIATA(){
     getFlights(IATAorigin, IATAdestiny, departure, arrival)
 }
 
+var displayResults = function(buckets, searchTerm) {
+ if (buckets.length === 0){
+    
+ }
+ resultsList.textContent = searchTerm
 
 
-searchButton.addEventListener("click", obtainResults)
+}
+
+searchButton.addEventListener("submit", displayResults)
