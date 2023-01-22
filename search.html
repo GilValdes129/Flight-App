@@ -7,28 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Search</title>
 </head>
-<body class="bg-gray-200">
-    <div class="mx-20 lg:mx-5 mt-4">
+<body class="bg-slate-300">
+    <h1 class="mx-20 lg:mx-7 mt-4 font-semibold">
         Choose your options and search the best flight for you
-    </div>
+    </h1>
 
     <div class="bg-slate-400">
-        <form action="" id="searchFormContainer" class="mx-20 lg:mx-5 mt-3 p-2 font-sans flex flex-col lg:flex-row justify-center items-center border border-sky-600 rounded-lg bg-sky-600">
+        <form action="" id="searchFormContainer" class="mx-20 lg:mx-5 my-3 p-2 font-sans flex flex-col lg:flex-row justify-center items-center border border-sky-600 rounded-md bg-sky-600">
             <div id="container"></div>
     
-            <label for="origin" class="font-bold">Origin</label>
+            <label for="origin" class="font-semibold px-2">Origin</label>
             <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your origin">
     
-            <label for="destination" class="font-bold">Destination</label>
+            <label for="destination" class="font-semibold px-2">Destination</label>
             <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your destination">
             
-            <label for="departure-date" class="font-bold">Departure date</label>
+            <label for="departure-date" class="font-semibold px-2">Departure date</label>
             <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your departure date">
     
-            <label for="return-date" class="font-bold">Return date</label>
+            <label for="return-date" class="font-semibold px-2">Return date</label>
             <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your return date">
     
-            <button id= "searchBtn" type="submit" name="submit" class="submit m-1 border border-cyan-700 border-solid rounded-full py-1 px-11 bg-cyan-100 hover:bg-cyan-400 text-cyan-900 text-center text-xl no-underline" value="Search">✈ Search</button>
+            <button id= "searchBtn" type="submit" name="submit" class="submit mx-7 border border-cyan-700 border-solid rounded-full py-1 px-11 bg-cyan-100 hover:bg-cyan-400 text-cyan-900 text-center text-xl no-underline" value="Search">✈ Search</button>
         </form>
     </div>
     
@@ -36,29 +36,29 @@
         <p id="warningMessage" class="font-bold text-lg text-red-500 hidden">Please fill out all the inputs before proceeding</p>
     </div>
 
-<div class="flex flex-col flex-wrap">
+<div id="results-container" class="flex flex-col flex-wrap hidden">
     <h2 id="conversion-rate" class="text-right font-bold m-4 p-3">Conversion rate</h2>
 
     <div class="flex flex-wrap justify-center w-full align-items gap-2">
         
         <div id="bestResultContainer" class="mx-3 flex-1 p-2">
-            <h3 class="p-1.5 border-cyan-700 border-solid border-b-0 rounded-t-lg bg-cyan-700 text-white font-bold">Best</h3>
-            <p class="p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, dignissimos?</p>
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Best</h3>
+            <p class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md"></p>
         </div>
 
         <div id="cheapestResultContainer" class="mx-3 flex-1 p-2">
-            <h3 class="p-1.5 border-cyan-700 border-solid border-b-0 rounded-t-lg bg-cyan-700 text-white font-bold">Cheapest</h3>
-            <ul id="CheapestResult" class="p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident?</ul>
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Cheapest</h3>
+            <p id="CheapestResult" class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md"></p>
         </div>
 
         <div id="fastestResultContainer" class="mx-3 flex-1 p-2">
-            <h3 class="p-1.5 border-cyan-700 border-solid border-b-0 rounded-t-lg bg-cyan-700 text-white font-bold">Fastest</h3>
-            <p id="fastestResult" class="p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus, iste necessitatibus.</p>
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Fastest</h3>
+            <p id="fastestResult" class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md"></p>
         </div>
         
         <div id="directResultContainer" class="mx-3 flex-1 p-2">
-            <h3 class="p-1.5 border-cyan-700 border-solid border-b-0 rounded-t-lg bg-cyan-700 text-white font-bold">Direct</h3>
-            <p id="directResult" class="p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md">Lorem ipsum dolor sit amet.</p>
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Direct</h3>
+            <p id="directResult" class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md"></p>
         </div>
 
     </div>

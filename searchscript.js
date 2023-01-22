@@ -8,6 +8,8 @@ var warningMessage = document.getElementById("warningMessage");
 
 var conversionRate = document.getElementById("conversion-rate");
 
+var resultsContainer = document.getElementById("results-container");
+
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
@@ -17,7 +19,7 @@ var getFlights = function (originInput, destinationInput, departureInput, arriva
 const options = {
     method: 'GET',
     headers: {
-		'X-RapidAPI-Key': 'f5253d08abmsh32cb1795e7b2900p1665f6jsnf91acf4926fb',
+		'X-RapidAPI-Key': '435a89b1dbmsh1fe6477136c0919p1bee02jsn0ab115c88c8f',
 		'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
 	}
 };
@@ -32,7 +34,7 @@ fetch(apiUrl, options)
 
         var bestContainer = document.getElementById("bestResultContainer");
         var cheapContainer = document.getElementById("cheapestResultContainer");
-        var fasttContainer = document.getElementById("fastesttResultContainer");
+        var fastContainer = document.getElementById("fastestResultContainer");
 
         //Best Flight Option Variables
 
@@ -116,6 +118,10 @@ var obtainResults = function (event){
         destinationInput.value = "";
         departureInput.value = "";
         arrivalInput.value = "";
+
+        //Removes the hidden class of the results container so the results show
+        resultsContainer.classList.remove("hidden");
+
     } else {
         warningMessage.classList.remove("hidden");
     }
@@ -224,7 +230,7 @@ function getIATA(){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'f5253d08abmsh32cb1795e7b2900p1665f6jsnf91acf4926fb',
+            'X-RapidAPI-Key': '435a89b1dbmsh1fe6477136c0919p1bee02jsn0ab115c88c8f',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }   
     };
