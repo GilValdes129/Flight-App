@@ -1,6 +1,4 @@
 var searchButton = document.getElementById("searchBtn");
-var resultsList = document.getElementById("resultsList");
-
 var originEl = document.getElementById("origin");
 var destinationEl = document.getElementById("destination");
 var departureEl = document.getElementById("departure-date");
@@ -19,7 +17,7 @@ var getFlights = function (originInput, destinationInput, departureInput, arriva
 const options = {
     method: 'GET',
     headers: {
-		'X-RapidAPI-Key': 'b3b89a7969mshd108a04b837f3e6p15cb70jsn3915c1614c4c',
+		'X-RapidAPI-Key': 'f5253d08abmsh32cb1795e7b2900p1665f6jsnf91acf4926fb',
 		'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
 	}
 };
@@ -29,27 +27,69 @@ fetch(apiUrl, options)
         return response.json()
     })
     .then(function(data){
-        console.log(data);
-        console.log(data.itineraries.buckets[0].items[0].price.formatted); //price - correct
-        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name);  // Airline - correct
-        console.log(data.itineraries.buckets[0].items[0].legs[0].departure); //Departure Time path - Correct
-        console.log(data.itineraries.buckets[0].items[0].legs[0].origin.name); // Departure Airport 
-        console.log(data.itineraries.buckets[0].items[0].legs[0].durationInMinutes); // Duration path in Minutes - Correct
-        console.log(data.itineraries.buckets[0].items[0].legs[0].arrival); //Arrival Time Path - Correct
-        console.log(data.itineraries.buckets[0].items[0].legs[0].destination.name); // Arrival Airport 
-        console.log(data.itineraries.buckets[0].items[0].legs[0].stopCount); //Escalas Path - correct
-        console.log(data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name); //Escala Destination - correct
-    })
-    // var flightOptions = [{
-    //     best: {
-    //         destination: "data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name";
-    //         arrival: data.itineraries.buckets[0].items[0].legs[0].arrival
-    //         price: data.itineraries.buckets[0].items[0].price.formatted
-    //     }
-    // }]
-    .catch(err => console.error(err));
-}
+        console.log(data)
+        
 
+        var bestContainer = document.getElementById("bestResultContainer");
+        var cheapContainer = document.getElementById("cheapestResultContainer");
+        var fasttContainer = document.getElementById("fastesttResultContainer");
+
+        //Best Flight Option Variables
+
+        var bestPrice = data.itineraries.buckets[0].items[0].price.formatted
+        var bestAirline = data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name
+        var bestOriginAirport = data.itineraries.buckets[0].items[0].legs[0].origin.name
+        var bestOriginTime = data.itineraries.buckets[0].items[0].legs[0].departure
+        var bestArrivalAirport = data.itineraries.buckets[0].items[0].legs[0].destination.name
+        var bestArrivalTime = data.itineraries.buckets[0].items[0].legs[0].arrival
+        var bestStopCount = data.itineraries.buckets[0].items[0].legs[0].stopCount
+        var bestStopAirport = data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name
+        var bestDurationTime = data.itineraries.buckets[0].items[0].legs[0].durationInMinutes
+    
+    
+        var bestResults = document.createElement("p")
+        bestResults.classList = "p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md"
+        bestResults.textContent = "Price: " + bestPrice
+        bestResults.textContent = "Airline: " + bestAirline
+        bestResults.textContent = "Origin Airport: " + bestOriginAirport
+        bestResults.textContent = "Departure Time: " + bestOriginTime
+        bestResults.textContent = "Destination Airport: " + bestArrivalAirport
+        bestResults.textContent = "Arrival Time: " + bestArrivalTime
+        bestResults.textContent = "Stops: " + bestStopCount + " at " + bestStopAirport
+        bestResults.textContent = "Flight Total Duration: " + bestDurationTime
+
+        bestContainer.appendChild(bestResults)
+
+        //Cheapest Flight Option Variables
+
+        var cheapPrice = data.itineraries.buckets[1].items[0].price.formatted
+        var cheapAirline = data.itineraries.buckets[1].items[0].legs[0].segments[0].marketingCarrier.name
+        var cheapOriginAirport = data.itineraries.buckets[1].items[0].legs[0].origin.name
+        var cheapOriginTime = data.itineraries.buckets[1].items[0].legs[0].departure
+        var cheapArrivalAirport = data.itineraries.buckets[1].items[0].legs[0].destination.name
+        var cheapArrivalTime = data.itineraries.buckets[1].items[0].legs[0].arrival
+        var cheapStopCount = data.itineraries.buckets[1].items[0].legs[0].stopCount
+        var cheapStopAirport = data.itineraries.buckets[1].items[0].legs[0].segments[0].destination.name
+        var cheapDurationTime = data.itineraries.buckets[1].items[0].legs[0].durationInMinutes
+    
+    
+        var cheapResults = document.createElement("p")
+        cheapResults.classList = "p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md"
+        cheapResults.textContent = "Price: " + cheapPrice
+        cheapResults.textContent = "Airline: " + cheapAirline
+        cheapResults.textContent = "Origin Airport: " + cheapOriginAirport
+        cheapResults.textContent = "Departure Time: " + cheapOriginTime
+        cheapResults.textContent = "Destination Airport: " + cheapArrivalAirport
+        cheapResults.textContent = "Arrival Time: " + cheapArrivalTime
+        cheapResults.textContent = "Stops: " + cheapStopCount + " at " + cheapStopAirport
+        cheapResults.textContent = "Flight Total Duration: " + cheapDurationTime
+
+        cheapContainer.appendChild(cheapResults)
+    })
+    
+    .catch(err => console.error(err));
+
+}
 
 var obtainResults = function (event){
     event.preventDefault();
@@ -72,8 +112,6 @@ var obtainResults = function (event){
     if(originInput && destinationInput && departureInput && arrivalInput) {
         //getFlights(originInput, destinationInput, departureInput, arrivalInput);
         
-       // resultsList.textContent = "";
-    
         originInput.value = "";
         destinationInput.value = "";
         departureInput.value = "";
@@ -186,7 +224,7 @@ function getIATA(){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'b3b89a7969mshd108a04b837f3e6p15cb70jsn3915c1614c4c',
+            'X-RapidAPI-Key': 'f5253d08abmsh32cb1795e7b2900p1665f6jsnf91acf4926fb',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }   
     };
