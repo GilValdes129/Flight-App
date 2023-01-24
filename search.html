@@ -12,7 +12,7 @@
         Choose your options and search the best flight for you
     </h1>
 
-    <div class="bg-slate-400">
+    <div class="">
         <form action="" id="searchFormContainer" class="mx-20 lg:mx-5 my-3 p-2 font-sans flex flex-col lg:flex-row justify-center items-center border border-sky-600 rounded-md bg-sky-600">
             <div id="container"></div>
     
@@ -36,14 +36,23 @@
         <p id="warningMessage" class="font-bold text-lg text-red-500 hidden">Please fill out all the inputs before proceeding</p>
     </div>
 
-<div id="results-container" class="flex flex-col flex-wrap hidden">
+<div id="results-container" class="flex flex-col flex-wrap">
     <h2 id="conversion-rate" class="text-right font-bold m-4 p-3">Conversion rate</h2>
 
     <div class="flex flex-wrap justify-center w-full align-items gap-2">
         
         <div id="bestResultContainer" class="mx-3 flex-1 p-2">
             <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Best</h3>
-            <p class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md"></p>
+            <ul class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md">
+                <li id="bestPrice" class="py-4 px-0.5">Price: </li>
+                <li id="bestAirline" class="py-4 px-0.5">Airline: </li>
+                <li id="bestOriginAirport" class="py-4 px-0.5">Origin airport: </li>
+                <li id="bestOriginTime" class="py-4 px-0.5">Departure time: </li>
+                <li id="bestArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
+                <li id="bestArrivalTime" class="py-4 px-0.5">Arrival time: </li>
+                <li id="bestStopCount" class="py-4 px-0.5">Stops: <span id="bestStopAirport">at </span></li>
+                <li id="bestDurationTime" class="py-4 px-0.5">Total flight duration: </li>
+            </ul>
         </div>
 
         <div id="cheapestResultContainer" class="mx-3 flex-1 p-2">
