@@ -13,7 +13,7 @@ var resultsContainer = document.getElementById("results-container");
 
 //Funtion to add origin input to URL
 var getFlights = function (originInput, destinationInput, departureInput, arrivalInput){
-    var apiUrl = "https://skyscanner44.p.rapidapi.com/search?adults=1&origin=" + originInput + "&destination=" + destinationInput + "&departureDate=" + departureInput + "&returnDate=" + arrivalInput + "&currency=EUR";
+    var apiUrl = "https://skyscanner44.p.rapidapi.com/search?adults=1&origin=" + originInput + "&destination=" + destinationInput + "&departureDate=" + departureInput + "&returnDate=" + arrivalInput + "&currency=MXN";
 
 
 const options = {
@@ -30,6 +30,7 @@ fetch(apiUrl, options)
     })
     .then(function(data){
         console.log(data)
+
 
         if (data.context.totalResults === 0){
             
@@ -49,57 +50,146 @@ fetch(apiUrl, options)
         var cheapContainer = document.getElementById("cheapestResultContainer");
         var fastContainer = document.getElementById("fastestResultContainer");
 
+
+
         //Best Flight Option Variables
 
-        var bestPrice = data.itineraries.buckets[0].items[0].price.formatted
-        var bestAirline = data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name
-        var bestOriginAirport = data.itineraries.buckets[0].items[0].legs[0].origin.name
-        var bestOriginTime = data.itineraries.buckets[0].items[0].legs[0].departure
-        var bestArrivalAirport = data.itineraries.buckets[0].items[0].legs[0].destination.name
-        var bestArrivalTime = data.itineraries.buckets[0].items[0].legs[0].arrival
-        var bestStopCount = data.itineraries.buckets[0].items[0].legs[0].stopCount
-        var bestStopAirport = data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name
-        var bestDurationTime = data.itineraries.buckets[0].items[0].legs[0].durationInMinutes
+        var bestPrice = document.getElementById("bestPrice");
+        var bestPriceInfo = data.itineraries.buckets[0].items[0].price.formatted
+        bestPrice.textContent = "Price: " + bestPriceInfo
+        var bestAirline = document.getElementById("bestAirline");
+        var bestAirlineInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name
+        bestAirline.textContent = "Airline: " + bestAirlineInfo
     
+        var bestOriginAirport = document.getElementById("bestOriginAirport");
+        var bestOriginAirportInfo = data.itineraries.buckets[0].items[0].legs[0].origin.name
+        bestOriginAirport.textContent = "Origin Airport: " + bestOriginAirportInfo
     
-        var bestResults = document.createElement("p")
-        bestResults.classList = "p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md"
-        bestResults.textContent = "Price: " + bestPrice
-        bestResults.textContent = "Airline: " + bestAirline
-        bestResults.textContent = "Origin Airport: " + bestOriginAirport
-        bestResults.textContent = "Departure Time: " + bestOriginTime
-        bestResults.textContent = "Destination Airport: " + bestArrivalAirport
-        bestResults.textContent = "Arrival Time: " + bestArrivalTime
-        bestResults.textContent = "Stops: " + bestStopCount + " at " + bestStopAirport
-        bestResults.textContent = "Flight Total Duration: " + bestDurationTime
+        var bestOriginTime = document.getElementById("bestOriginTime");
+        var bestOriginTimeInfo = data.itineraries.buckets[0].items[0].legs[0].departure
+        bestOriginTime.textContent = "Departure Time: " + bestOriginTimeInfo
 
-        bestContainer.appendChild(bestResults)
+        var bestArrivalAirport = document.getElementById("bestArrivalAirport");
+        var bestArrivalAirportInfo = data.itineraries.buckets[0].items[0].legs[0].destination.name
+        bestArrivalAirport.textContent = "Destination Airport: " + bestArrivalAirportInfo
+       
+        var bestArrivalTime = document.getElementById("bestArrivalTime");
+        var bestArrivalTimeInfo = data.itineraries.buckets[0].items[0].legs[0].arrival
+        bestArrivalTime.textContent = "Arrival Time: " + bestArrivalTimeInfo
+
+        var bestStopCount = document.getElementById("bestStopCount");
+        var bestStopCountInfo = data.itineraries.buckets[0].items[0].legs[0].stopCount
+        var bestStopAirportInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name
+        bestStopCount.textContent = "Stops: " + bestStopCountInfo + " at " + bestStopAirportInfo
+        
+        var bestDurationTime = document.getElementById("bestDurationTime");
+        var bestDurationTimeInfo = data.itineraries.buckets[0].items[0].legs[0].durationInMinutes
+        bestDurationTime.textContent = "Flight Total Duration: " + bestDurationTimeInfo
+
 
         //Cheapest Flight Option Variables.
+        var cheapPrice = document.getElementById("cheapPrice");
+        var cheapPriceInfo = data.itineraries.buckets[1].items[0].price.formatted
+        cheapPrice.textContent = "Price: " + cheapPriceInfo
 
-        var cheapPrice = data.itineraries.buckets[1].items[0].price.formatted
-        var cheapAirline = data.itineraries.buckets[1].items[0].legs[0].segments[0].marketingCarrier.name
-        var cheapOriginAirport = data.itineraries.buckets[1].items[0].legs[0].origin.name
-        var cheapOriginTime = data.itineraries.buckets[1].items[0].legs[0].departure
-        var cheapArrivalAirport = data.itineraries.buckets[1].items[0].legs[0].destination.name
-        var cheapArrivalTime = data.itineraries.buckets[1].items[0].legs[0].arrival
-        var cheapStopCount = data.itineraries.buckets[1].items[0].legs[0].stopCount
-        var cheapStopAirport = data.itineraries.buckets[1].items[0].legs[0].segments[0].destination.name
-        var cheapDurationTime = data.itineraries.buckets[1].items[0].legs[0].durationInMinutes
+        var cheapAirline = document.getElementById("cheapAirline");
+        var cheapAirlineInfo = data.itineraries.buckets[1].items[0].legs[0].segments[0].marketingCarrier.name
+        cheapAirline.textContent = "Airline: " + cheapAirlineInfo
     
+        var cheapOriginAirport = document.getElementById("cheapOriginAirport");
+        var cheapOriginAirportInfo = data.itineraries.buckets[1].items[0].legs[0].origin.name
+        cheapOriginAirport.textContent = "Origin Airport: " + cheapOriginAirportInfo
     
-        var cheapResults = document.createElement("p")
-        cheapResults.classList = "p-2 border-x border-b border-cyan-700 border-solid rounded-b-lg shadow-md"
-        cheapResults.textContent = "Price: " + cheapPrice
-        cheapResults.textContent = "Airline: " + cheapAirline
-        cheapResults.textContent = "Origin Airport: " + cheapOriginAirport
-        cheapResults.textContent = "Departure Time: " + cheapOriginTime
-        cheapResults.textContent = "Destination Airport: " + cheapArrivalAirport
-        cheapResults.textContent = "Arrival Time: " + cheapArrivalTime
-        cheapResults.textContent = "Stops: " + cheapStopCount + " at " + cheapStopAirport
-        cheapResults.textContent = "Flight Total Duration: " + cheapDurationTime
+        var cheapOriginTime = document.getElementById("cheapOriginTime");
+        var cheapOriginTimeInfo = data.itineraries.buckets[1].items[0].legs[0].departure
+        cheapOriginTime.textContent = "Departure Time: " + cheapOriginTimeInfo
 
-        cheapContainer.appendChild(cheapResults)
+        var cheapArrivalAirport = document.getElementById("cheapArrivalAirport");
+        var cheapArrivalAirportInfo = data.itineraries.buckets[1].items[0].legs[0].destination.name
+        cheapArrivalAirport.textContent = "Destination Airport: " + cheapArrivalAirportInfo
+       
+        var cheapArrivalTime = document.getElementById("cheapArrivalTime");
+        var cheapArrivalTimeInfo = data.itineraries.buckets[1].items[0].legs[0].arrival
+        cheapArrivalTime.textContent = "Arrival Time: " + cheapArrivalTimeInfo
+
+        var cheapStopCount = document.getElementById("cheapStopCount");
+        var cheapStopCountInfo = data.itineraries.buckets[1].items[0].legs[0].stopCount
+        var cheapStopAirportInfo = data.itineraries.buckets[1].items[0].legs[0].segments[0].destination.name
+        cheapStopCount.textContent = "Stops: " + cheapStopCountInfo + " at " + cheapStopAirportInfo
+        
+        var cheapDurationTime = document.getElementById("cheapDurationTime");
+        var cheapDurationTimeInfo = data.itineraries.buckets[1].items[0].legs[0].durationInMinutes
+        cheapDurationTime.textContent = "Flight Total Duration: " + cheapDurationTimeInfo
+
+        //Fastes Flight Option Variables
+        var fastPrice = document.getElementById("fastPrice");
+        var fastPriceInfo = data.itineraries.buckets[2].items[0].price.formatted
+        fastPrice.textContent = "Price: " + fastPriceInfo
+
+        var fastAirline = document.getElementById("fastAirline");
+        var fastAirlineInfo = data.itineraries.buckets[2].items[0].legs[0].segments[0].marketingCarrier.name
+        fastAirline.textContent = "Airline: " + fastAirlineInfo
+
+        var fastOriginAirport = document.getElementById("fastOriginAirport");
+        var fastOriginAirportInfo = data.itineraries.buckets[2].items[0].legs[0].origin.name
+        fastOriginAirport.textContent = "Origin Airport: " + fastOriginAirportInfo
+
+        var fastOriginTime = document.getElementById("fastOriginTime");
+        var fastOriginTimeInfo = data.itineraries.buckets[2].items[0].legs[0].departure
+        fastOriginTime.textContent = "Departure Time: " + fastOriginTimeInfo
+
+        var fastArrivalAirport = document.getElementById("fastArrivalAirport");
+        var fastArrivalAirportInfo = data.itineraries.buckets[2].items[0].legs[0].destination.name
+        fastArrivalAirport.textContent = "Destination Airport: " + fastArrivalAirportInfo
+       
+        var fastArrivalTime = document.getElementById("fastArrivalTime");
+        var fastArrivalTimeInfo = data.itineraries.buckets[2].items[0].legs[0].arrival
+        fastArrivalTime.textContent = "Arrival Time: " + fastArrivalTimeInfo
+
+        var fastStopCount = document.getElementById("fastStopCount");
+        var fastStopCountInfo = data.itineraries.buckets[2].items[0].legs[0].stopCount
+        var fastStopAirportInfo = data.itineraries.buckets[2].items[0].legs[0].segments[0].destination.name
+        fastStopCount.textContent = "Stops: " + fastStopCountInfo + " at " + fastStopAirportInfo
+        
+        var fastDurationTime = document.getElementById("fastDurationTime");
+        var fastDurationTimeInfo = data.itineraries.buckets[2].items[0].legs[0].durationInMinutes
+        fastDurationTime.textContent = "Flight Total Duration: " + fastDurationTimeInfo
+
+        //Direct Flight Option Variables
+        var directPrice = document.getElementById("directPrice");
+        var directPriceInfo = data.itineraries.buckets[3].items[0].price.formatted
+        directPrice.textContent = "Price: " + directPriceInfo
+
+        var directAirline = document.getElementById("directAirline");
+        var directAirlineInfo = data.itineraries.buckets[3].items[0].legs[0].segments[0].marketingCarrier.name
+        directAirline.textContent = "Airline: " + directAirlineInfo
+
+        var directOriginAirport = document.getElementById("directOriginAirport");
+        var directOriginAirportInfo = data.itineraries.buckets[3].items[0].legs[0].origin.name
+        directOriginAirport.textContent = "Origin Airport: " + directOriginAirportInfo
+
+        var directOriginTime = document.getElementById("directOriginTime");
+        var directOriginTimeInfo = data.itineraries.buckets[3].items[0].legs[0].departure
+        directOriginTime.textContent = "Departure Time: " + directOriginTimeInfo
+
+        var directArrivalAirport = document.getElementById("directArrivalAirport");
+        var directArrivalAirportInfo = data.itineraries.buckets[3].items[0].legs[0].destination.name
+        directArrivalAirport.textContent = "Destination Airport: " + directArrivalAirportInfo
+       
+        var directArrivalTime = document.getElementById("directArrivalTime");
+        var directArrivalTimeInfo = data.itineraries.buckets[3].items[0].legs[0].arrival
+        directArrivalTime.textContent = "Arrival Time: " + directArrivalTimeInfo
+
+        var directStopCount = document.getElementById("directStopCount");
+        var directStopCountInfo = data.itineraries.buckets[3].items[0].legs[0].stopCount
+        var directStopAirportInfo = data.itineraries.buckets[3].items[0].legs[0].segments[0].destination.name
+        directStopCount.textContent = "Stops: " + directStopCountInfo + " at " + directStopAirportInfo
+        
+        var directDurationTime = document.getElementById("directDurationTime");
+        var directDurationTimeInfo = data.itineraries.buckets[3].items[0].legs[0].durationInMinutes
+        directDurationTime.textContent = "Flight Total Duration: " + directDurationTimeInfo
+
+
     })
     
     .catch(err => console.error(err));
