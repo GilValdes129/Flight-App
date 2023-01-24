@@ -9,6 +9,7 @@ var warningMessage = document.getElementById("warningMessage");
 var conversionRate = document.getElementById("conversion-rate");
 
 var resultsContainer = document.getElementById("results-container");
+var noFlightsMessage = document.getElementById("noFlightsMessage");
 
 
 //Funtion to add origin input to URL
@@ -19,7 +20,7 @@ var getFlights = function (originInput, destinationInput, departureInput, arriva
 const options = {
     method: 'GET',
     headers: {
-		'X-RapidAPI-Key': '435a89b1dbmsh1fe6477136c0919p1bee02jsn0ab115c88c8f',
+		'X-RapidAPI-Key': '5d6defba98msh775a120e658e3f8p17e549jsnbb6827dd5252',
 		'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
 	}
 };
@@ -30,19 +31,19 @@ fetch(apiUrl, options)
     })
     .then(function(data){
         console.log(data)
-
+        console.log(data.context.totalResults)
 
         if (data.context.totalResults === 0){
-            
-            var noFlightsMessage = document.getElementById("noFlightsMessage");
 
-            resultsContainer.classList.remove("hidden");
-            noFlightsMessage.classList.add("hidden");
+            resultsContainer.classList.add("hidden");
+            noFlightsMessage.classList.remove("hidden");
+            console.log(noFlightsMessage)
 
-            return
             } else {
-                noFlightsMessage.classList.remove("hidden");
-                }
+                resultsContainer.classList.remove("hidden");
+                noFlightsMessage.classList.add("hidden");
+                console.log(noFlightsMessage)
+            }
                     
         
 
@@ -54,13 +55,6 @@ fetch(apiUrl, options)
 
         //Best Flight Option Variables
 
-        var bestPrice = document.getElementById("bestPrice");
-        var bestPriceInfo = data.itineraries.buckets[0].items[0].price.formatted
-        bestPrice.textContent = "Price: " + bestPriceInfo
-        var bestAirline = document.getElementById("bestAirline");
-        var bestAirlineInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name
-        bestAirline.textContent = "Airline: " + bestAirlineInfo
-    
         var bestOriginAirport = document.getElementById("bestOriginAirport");
         var bestOriginAirportInfo = data.itineraries.buckets[0].items[0].legs[0].origin.name
         bestOriginAirport.textContent = "Origin Airport: " + bestOriginAirportInfo
@@ -208,10 +202,6 @@ var obtainResults = function (event){
     var arrivalInput = returnEl.value;
     localStorage.setItem("arrival", dayjs(arrivalInput).format("YYYY-MM-DD"))
 
-    console.log(originInput)
-    console.log(destinationInput)
-    console.log(departureInput)
-    console.log(arrivalInput)
 
 
     if(originInput && destinationInput && departureInput && arrivalInput) {
@@ -241,8 +231,6 @@ function getCoordinates(city){
             return response.json()
         })
         .then(function(data){
-            console.log(data)
-            console.log(data.coord)
             var lat = data.coord.lat
             var lon = data.coord.lon
             var sumSign = "%2B"
@@ -250,7 +238,6 @@ function getCoordinates(city){
                 sumSign = ""
             }
             var coordinates = `${lat}${sumSign}${lon}`
-            console.log(coordinates)
             getCityInfo(coordinates)
         })
 }
@@ -270,7 +257,6 @@ function getCityInfo(coordinates){
         })
         .then(function(data){
             var isoCode = data.data[0].countryCode
-            console.log(isoCode)
 
             getCurrency(isoCode);
             })
@@ -292,7 +278,6 @@ function getCurrency (isoCode){
     })
     .then(function(data){
         var currency = data.currency
-        console.log(currency)
 
         currencyConvertion(currency);
     })
@@ -313,11 +298,8 @@ function currencyConvertion(currency) {
         return response.json()
     })
     .then(function(data){
-        console.log(data)
         var mxnValue = data.result
         var mxnSymbol = data.symbol
-        console.log(mxnValue)
-        console.log(mxnSymbol)
 
         conversionRate.textContent= currency + "=" + mxnValue + mxnSymbol
     })
@@ -334,7 +316,7 @@ function getIATA(){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '435a89b1dbmsh1fe6477136c0919p1bee02jsn0ab115c88c8f',
+            'X-RapidAPI-Key': '5d6defba98msh775a120e658e3f8p17e549jsnbb6827dd5252',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }   
     };
