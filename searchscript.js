@@ -62,7 +62,7 @@ fetch(apiUrl, options)
 
         bestContainer.appendChild(bestResults)
 
-        //Cheapest Flight Option Variables
+        //Cheapest Flight Option Variables.
 
         var cheapPrice = data.itineraries.buckets[1].items[0].price.formatted
         var cheapAirline = data.itineraries.buckets[1].items[0].legs[0].segments[0].marketingCarrier.name
