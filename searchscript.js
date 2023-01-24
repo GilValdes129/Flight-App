@@ -30,14 +30,6 @@ fetch(apiUrl, options)
     })
     .then(function(data){
         console.log(data)
-        
-//         if (data.context.status === "incomplete" || data.context.totalResults === 0){
-// //             document.querySelector('.js-static-modal-toggle').addEventListener('click', function() {
-// //   new Modal({el: document.getElementById('static-modal')}).show();
-// // });
-
-//             return
-//         }
 
         //Best Flight Option Variables
         var bestPrice = document.getElementById("bestPrice");
@@ -67,7 +59,6 @@ fetch(apiUrl, options)
         var bestStopCount = document.getElementById("bestStopCount");
         var bestStopCountInfo = data.itineraries.buckets[0].items[0].legs[0].stopCount
         var bestStopAirportInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name
-
         bestStopCount.textContent = "Stops: " + bestStopCountInfo + " at " + bestStopAirportInfo
         
         var bestDurationTime = document.getElementById("bestDurationTime");
@@ -103,7 +94,6 @@ fetch(apiUrl, options)
         var cheapStopCount = document.getElementById("cheapStopCount");
         var cheapStopCountInfo = data.itineraries.buckets[1].items[0].legs[0].stopCount
         var cheapStopAirportInfo = data.itineraries.buckets[1].items[0].legs[0].segments[0].destination.name
-
         cheapStopCount.textContent = "Stops: " + cheapStopCountInfo + " at " + cheapStopAirportInfo
         
         var cheapDurationTime = document.getElementById("cheapDurationTime");
@@ -138,12 +128,46 @@ fetch(apiUrl, options)
         var fastStopCount = document.getElementById("fastStopCount");
         var fastStopCountInfo = data.itineraries.buckets[2].items[0].legs[0].stopCount
         var fastStopAirportInfo = data.itineraries.buckets[2].items[0].legs[0].segments[0].destination.name
-
         fastStopCount.textContent = "Stops: " + fastStopCountInfo + " at " + fastStopAirportInfo
         
         var fastDurationTime = document.getElementById("fastDurationTime");
         var fastDurationTimeInfo = data.itineraries.buckets[2].items[0].legs[0].durationInMinutes
         fastDurationTime.textContent = "Flight Total Duration: " + fastDurationTimeInfo
+
+        //Direct Flight Option Variables
+        var directPrice = document.getElementById("directPrice");
+        var directPriceInfo = data.itineraries.buckets[3].items[0].price.formatted
+        directPrice.textContent = "Price: " + directPriceInfo
+
+        var directAirline = document.getElementById("directAirline");
+        var directAirlineInfo = data.itineraries.buckets[3].items[0].legs[0].segments[0].marketingCarrier.name
+        directAirline.textContent = "Airline: " + directAirlineInfo
+
+        var directOriginAirport = document.getElementById("directOriginAirport");
+        var directOriginAirportInfo = data.itineraries.buckets[3].items[0].legs[0].origin.name
+        directOriginAirport.textContent = "Origin Airport: " + directOriginAirportInfo
+
+        var directOriginTime = document.getElementById("directOriginTime");
+        var directOriginTimeInfo = data.itineraries.buckets[3].items[0].legs[0].departure
+        directOriginTime.textContent = "Departure Time: " + directOriginTimeInfo
+
+        var directArrivalAirport = document.getElementById("directArrivalAirport");
+        var directArrivalAirportInfo = data.itineraries.buckets[3].items[0].legs[0].destination.name
+        directArrivalAirport.textContent = "Destination Airport: " + directArrivalAirportInfo
+       
+        var directArrivalTime = document.getElementById("directArrivalTime");
+        var directArrivalTimeInfo = data.itineraries.buckets[3].items[0].legs[0].arrival
+        directArrivalTime.textContent = "Arrival Time: " + directArrivalTimeInfo
+
+        var directStopCount = document.getElementById("directStopCount");
+        var directStopCountInfo = data.itineraries.buckets[3].items[0].legs[0].stopCount
+        var directStopAirportInfo = data.itineraries.buckets[3].items[0].legs[0].segments[0].destination.name
+        directStopCount.textContent = "Stops: " + directStopCountInfo + " at " + directStopAirportInfo
+        
+        var directDurationTime = document.getElementById("directDurationTime");
+        var directDurationTimeInfo = data.itineraries.buckets[3].items[0].legs[0].durationInMinutes
+        directDurationTime.textContent = "Flight Total Duration: " + directDurationTimeInfo
+
 
     })
     
