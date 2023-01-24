@@ -36,6 +36,11 @@
         <p id="warningMessage" class="font-bold text-lg text-red-500 hidden">Please fill out all the inputs before proceeding</p>
     </div>
 
+    <div class="flex justify-center">
+        <p id="noFlightsMessage" class="font-bold text-lg text-red-500 hidden">No flights available, please adjust parameters</p>
+    </div>
+    
+
 <div id="results-container" class="flex flex-col flex-wrap">
     <h2 id="conversion-rate" class="text-right font-bold m-4 p-3">Conversion rate</h2>
 
@@ -64,7 +69,7 @@
                 <li id="cheapOriginTime" class="py-4 px-0.5">Departure time: </li>
                 <li id="cheapArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
                 <li id="cheapArrivalTime" class="py-4 px-0.5">Arrival time: </li>
-                <li id="cheapStopCount" class="py-4 px-0.5">Stops: <span id="bestStopAirport">at </span></li>
+                <li id="cheapStopCount" class="py-4 px-0.5">Stops: <span id="cheapStopAirport">at </span></li>
                 <li id="cheapDurationTime" class="py-4 px-0.5">Total flight duration: </li>
             </ul>
         </div>
@@ -72,13 +77,13 @@
         <div id="fastestResultContainer" class="mx-3 flex-1 p-2">
             <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Fastest</h3>
             <ul id="fastestResult" class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md">
-                <li id="fastResult" class="py-4 px-0.5">Price: </li>
+                <li id="fastPrice" class="py-4 px-0.5">Price: </li>
                 <li id="fastAirline" class="py-4 px-0.5">Airline: </li>
                 <li id="fastOriginAirport" class="py-4 px-0.5">Origin airport: </li>
                 <li id="fastOriginTime" class="py-4 px-0.5">Departure time: </li>
                 <li id="fastArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
                 <li id="fastArrivalTime" class="py-4 px-0.5">Arrival time: </li>
-                <li id="fastStopCount" class="py-4 px-0.5">Stops: <span id="bestStopAirport">at </span></li>
+                <li id="fastStopCount" class="py-4 px-0.5">Stops: <span id="fastStopAirport">at </span></li>
                 <li id="fastDurationTime" class="py-4 px-0.5">Total flight duration: </li>
             </ul>
         </div>
@@ -92,7 +97,7 @@
                 <li id="directOriginTime" class="py-4 px-0.5">Departure time: </li>
                 <li id="directArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
                 <li id="directArrivalTime" class="py-4 px-0.5">Arrival time: </li>
-                <li id="directStopCount" class="py-4 px-0.5">Stops: <span id="bestStopAirport">at </span></li>
+                <li id="directStopCount" class="py-4 px-0.5">Stops: <span id="directStopAirport">at </span></li>
                 <li id="directDurationTime" class="py-4 px-0.5">Total flight duration: </li>
             </ul>
         </div>

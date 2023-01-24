@@ -30,6 +30,19 @@ fetch(apiUrl, options)
     })
     .then(function(data){
         console.log(data)
+
+        if (data.context.totalResults === 0){
+            
+            var noFlightsMessage = document.getElementById("noFlightsMessage");
+
+            resultsContainer.classList.remove("hidden");
+            noFlightsMessage.classList.add("hidden");
+
+            return
+            } else {
+                noFlightsMessage.classList.remove("hidden");
+                }
+                    
         
 
         var bestContainer = document.getElementById("bestResultContainer");
@@ -121,6 +134,7 @@ var obtainResults = function (event){
 
         //Removes the hidden class of the results container so the results show
         resultsContainer.classList.remove("hidden");
+        warningMessage.classList.add("hidden");
 
     } else {
         warningMessage.classList.remove("hidden");
