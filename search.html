@@ -7,27 +7,93 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Search</title>
 </head>
-<body>
+<body class="bg-slate-300">
+    <h1 class="mx-20 lg:mx-7 mt-4 font-semibold">
+        Choose your options and search the best flight for you
+    </h1>
+
+    <div class="">
+        <form action="" id="searchFormContainer" class="mx-20 lg:mx-5 my-3 p-2 font-sans flex flex-col lg:flex-row justify-center items-center border border-sky-600 rounded-md bg-sky-600">
+            <div id="container"></div>
     
-    <form action="/form/submit" id="searchFormContainer" class="m-1 p-1 font-sans flex flex-col justify-center items-center">
+            <label for="origin" class="font-semibold px-2">Origin</label>
+            <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your origin">
+    
+            <label for="destination" class="font-semibold px-2">Destination</label>
+            <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your destination">
+            
+            <label for="departure-date" class="font-semibold px-2">Departure date</label>
+            <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your departure date">
+    
+            <label for="return-date" class="font-semibold px-2">Return date</label>
+            <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-2 border-slate-300 border-solid" placeholder="Type your return date">
+    
+            <button id= "searchBtn" type="submit" name="submit" class="submit mx-7 border border-cyan-700 border-solid rounded-full py-1 px-11 bg-cyan-100 hover:bg-cyan-400 text-cyan-900 text-center text-xl no-underline" value="Search">✈ Search</button>
+        </form>
+    </div>
+    
+    <div class="flex justify-center">
+        <p id="warningMessage" class="font-bold text-lg text-red-500 hidden">Please fill out all the inputs before proceeding</p>
+    </div>
 
-        <div kayakWidgetContainer></div>
+    <div class="flex justify-center">
+        <p id="noFlightsMessage" class="font-bold text-lg text-red-500 hidden">No flights available, please adjust parameters</p>
+    </div>
+    
 
-        <label for="origin">Origin</label>
-        <input type="text" name="origin" id="origin" class="origin m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your origin"><br>
+<div id="results-container" class="flex flex-col flex-wrap">
+    <h2 id="conversion-rate" class="text-right font-bold m-4 p-3">Conversion rate</h2>
 
-        <label for="destination">Destination</label>
-        <input type="text" name="destination" id="destination" class="origin m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your destination"><br>
+    <div class="flex flex-wrap justify-center w-full align-items gap-2">
         
-        <label for="departure-date">Departure date</label>
-        <input type="date" name="departure-date" id="departure-date" class="departure-date m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your departure date"><br>
+        <div id="bestResultContainer" class="mx-3 flex-1 p-2">
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Best</h3>
+            <ul class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md">
+                <li id="bestPrice" class="py-4 px-0.5">Price: </li>
+                <li id="bestAirline" class="py-4 px-0.5">Airline: </li>
+                <li id="bestOriginAirport" class="py-4 px-0.5">Origin airport: </li>
+                <li id="bestOriginTime" class="py-4 px-0.5">Departure time: </li>
+                <li id="bestArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
+                <li id="bestArrivalTime" class="py-4 px-0.5">Arrival time: </li>
+                <li id="bestStopCount" class="py-4 px-0.5">Stops: <span id="bestStopAirport">at </span></li>
+                <li id="bestDurationTime" class="py-4 px-0.5">Total flight duration: </li>
+            </ul>
+        </div>
 
-        <label for="return-date">Return date</label>
-        <input type="date" name="return-date" id="return-date" class="return-date m-1 b-1 bg-slate-100 border-1 border-black border-solid" placeholder="Type your return date"><br>
+        <div id="cheapestResultContainer" class="mx-3 flex-1 p-2">
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Cheapest</h3>
+            <ul id="CheapestResult" class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md">
+                <li id="cheapPrice" class="py-4 px-0.5">Price: </li>
+                <li id="cheapAirline" class="py-4 px-0.5">Airline: </li>
+                <li id="cheapOriginAirport" class="py-4 px-0.5">Origin airport: </li>
+                <li id="cheapOriginTime" class="py-4 px-0.5">Departure time: </li>
+                <li id="cheapArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
+                <li id="cheapArrivalTime" class="py-4 px-0.5">Arrival time: </li>
+                <li id="cheapStopCount" class="py-4 px-0.5">Stops: <span id="cheapStopAirport">at </span></li>
+                <li id="cheapDurationTime" class="py-4 px-0.5">Total flight duration: </li>
+            </ul>
+        </div>
 
-        <input type="submit" name="submit" class="submit m-1 border-1 border-cyan-800 border-solid rounded-lg py-1 px-11 bg-cyan-100 hover:bg-cyan-300 hover:text-3xl text-black text-center font-bold text-2xl no-underline" value="Search">
-    </form>
+        <div id="fastestResultContainer" class="mx-3 flex-1 p-2">
+            <h3 class="p-1.5 border-sky-800 border-solid border-b-0 rounded-t-lg bg-sky-800 text-white font-bold">Fastest</h3>
+            <ul id="fastestResult" class="p-2 border-x border-b border-sky-800 border-solid rounded-b-lg shadow-md">
+                <li id="fastPrice" class="py-4 px-0.5">Price: </li>
+                <li id="fastAirline" class="py-4 px-0.5">Airline: </li>
+                <li id="fastOriginAirport" class="py-4 px-0.5">Origin airport: </li>
+                <li id="fastOriginTime" class="py-4 px-0.5">Departure time: </li>
+                <li id="fastArrivalAirport" class="py-4 px-0.5">Destination airport: </li>
+                <li id="fastArrivalTime" class="py-4 px-0.5">Arrival time: </li>
+                <li id="fastStopCount" class="py-4 px-0.5">Stops: <span id="fastStopAirport">at </span></li>
+                <li id="fastDurationTime" class="py-4 px-0.5">Total flight duration: </li>
+            </ul>
+        </div>
+        
+            </div>
 
-    <script type="text/JavaScript" src="https://www.kayak.com/affiliate/widget-v2.js"></script>
+    </div>
+</div>
+
+    <script src="searchscript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 </body>
 </html>
