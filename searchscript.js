@@ -54,6 +54,14 @@ fetch(apiUrl, options)
 
 
         //Best Flight Option Variables
+	
+	var bestPrice = document.getElementById("bestPrice");
+        var bestPriceInfo = data.itineraries.buckets[0].items[0].price.formatted
+        bestPrice.textContent = "Origin Airport: " + bestPriceInfo
+    
+        var bestAirline = document.getElementById("bestAirline");
+        var bestAirlineInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name
+        bestAirline.textContent = "Origin Airport: " + bestAirlineInfo
 
         var bestOriginAirport = document.getElementById("bestOriginAirport");
         var bestOriginAirportInfo = data.itineraries.buckets[0].items[0].legs[0].origin.name
