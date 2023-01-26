@@ -37,6 +37,19 @@ Currencies And Countries API, Skyscanner API, Openwheathermap API, and GeoDB Cit
 
 ## MVP
 
+![Landing page](assets/readme-images/1-main.png)
+
+![Search page in wide screens](assets/readme-images/2-search-lg.png)
+
+![Search page in default mode, for small screens](assets/readme-images/3-search-sm.jpg)
 
 
+The Flight App works in a way that the user starts in the landing page, where they can click on the Let's Go button.
 
+The user will be directed into the Serch Page.
+
+If the user doesn't write any input, a message will remind the user to fill out all the inputs.
+
+Once the user fill out all the inputs, information of their flight will be displayed in three categories: best, cheapest, and fastest.
+
+If there are no flights available for the chosen dates or destination, a message will display to let the user know about it.
