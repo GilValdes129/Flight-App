@@ -20,7 +20,7 @@ var getFlights = function (originInput, destinationInput, departureInput, arriva
 const options = {
     method: 'GET',
     headers: {
-		'X-RapidAPI-Key': '5d6defba98msh775a120e658e3f8p17e549jsnbb6827dd5252',
+		'X-RapidAPI-Key': '94a28a665fmshcec5c9efbab6820p16ffddjsn1ac873c424b2',
 		'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
 	}
 };
@@ -45,17 +45,15 @@ fetch(apiUrl, options)
                 console.log(noFlightsMessage)
             }
                     
+        
+
+        var bestContainer = document.getElementById("bestResultContainer");
+        var cheapContainer = document.getElementById("cheapestResultContainer");
+        var fastContainer = document.getElementById("fastestResultContainer");
+
+
 
         //Best Flight Option Variables
-
-        var bestPrice = document.getElementById("bestPrice");
-        var bestPriceInfo = data.itineraries.buckets[0].items[0].price.formatted
-        bestPrice.textContent = "Origin Airport: " + bestPriceInfo
-    
-        var bestAirline = document.getElementById("bestAirline");
-        var bestAirlineInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].marketingCarrier.name
-        bestAirline.textContent = "Origin Airport: " + bestAirlineInfo
-    
 
         var bestOriginAirport = document.getElementById("bestOriginAirport");
         var bestOriginAirportInfo = data.itineraries.buckets[0].items[0].legs[0].origin.name
@@ -73,19 +71,14 @@ fetch(apiUrl, options)
         var bestArrivalTimeInfo = data.itineraries.buckets[0].items[0].legs[0].arrival
         bestArrivalTime.textContent = "Arrival Time: " + bestArrivalTimeInfo
 
-        
         var bestStopCount = document.getElementById("bestStopCount");
         var bestStopCountInfo = data.itineraries.buckets[0].items[0].legs[0].stopCount
         var bestStopAirportInfo = data.itineraries.buckets[0].items[0].legs[0].segments[0].destination.name
-        if(bestStopCountInfo === 0){
-            bestStopCount.textContent = "Stops: This is a direct flight!"
-        } else {
-            bestStopCount.textContent = "Stops: " + bestStopCountInfo + " at " + bestStopAirportInfo
-        }
-
+        bestStopCount.textContent = "Stops: " + bestStopCountInfo + " at " + bestStopAirportInfo
+        
         var bestDurationTime = document.getElementById("bestDurationTime");
         var bestDurationTimeInfo = data.itineraries.buckets[0].items[0].legs[0].durationInMinutes
-        bestDurationTime.textContent = "Flight Total Duration: " + bestDurationTimeInfo  + " minutes"
+        bestDurationTime.textContent = "Flight Total Duration: " + bestDurationTimeInfo
 
 
         //Cheapest Flight Option Variables.
@@ -116,15 +109,11 @@ fetch(apiUrl, options)
         var cheapStopCount = document.getElementById("cheapStopCount");
         var cheapStopCountInfo = data.itineraries.buckets[1].items[0].legs[0].stopCount
         var cheapStopAirportInfo = data.itineraries.buckets[1].items[0].legs[0].segments[0].destination.name
-        if(cheapStopCountInfo === 0){
-            cheapStopCount.textContent = "Stops: This is a direct flight!"
-        } else {
-            cheapStopCount.textContent = "Stops: " + cheapStopCountInfo + " at " + cheapStopAirportInfo
-        }
-
+        cheapStopCount.textContent = "Stops: " + cheapStopCountInfo + " at " + cheapStopAirportInfo
+        
         var cheapDurationTime = document.getElementById("cheapDurationTime");
         var cheapDurationTimeInfo = data.itineraries.buckets[1].items[0].legs[0].durationInMinutes
-        cheapDurationTime.textContent = "Flight Total Duration: " + cheapDurationTimeInfo + " minutes"
+        cheapDurationTime.textContent = "Flight Total Duration: " + cheapDurationTimeInfo
 
         //Fastes Flight Option Variables
         var fastPrice = document.getElementById("fastPrice");
@@ -156,15 +145,44 @@ fetch(apiUrl, options)
         var fastStopAirportInfo = data.itineraries.buckets[2].items[0].legs[0].segments[0].destination.name
         fastStopCount.textContent = "Stops: " + fastStopCountInfo + " at " + fastStopAirportInfo
         
-        if(fastStopCountInfo === 0){
-            fastStopCount.textContent = "Stops: This is a direct flight!"
-        } else {
-            fastStopCount.textContent = "Stops: " + fastStopCountInfo + " at " + fastStopAirportInfo
-        }
-        
         var fastDurationTime = document.getElementById("fastDurationTime");
         var fastDurationTimeInfo = data.itineraries.buckets[2].items[0].legs[0].durationInMinutes
-        fastDurationTime.textContent = "Flight Total Duration: " + fastDurationTimeInfo + " minutes"
+        fastDurationTime.textContent = "Flight Total Duration: " + fastDurationTimeInfo
+
+        //Direct Flight Option Variables
+        var directPrice = document.getElementById("directPrice");
+        var directPriceInfo = data.itineraries.buckets[3].items[0].price.formatted
+        directPrice.textContent = "Price: " + directPriceInfo
+
+        var directAirline = document.getElementById("directAirline");
+        var directAirlineInfo = data.itineraries.buckets[3].items[0].legs[0].segments[0].marketingCarrier.name
+        directAirline.textContent = "Airline: " + directAirlineInfo
+
+        var directOriginAirport = document.getElementById("directOriginAirport");
+        var directOriginAirportInfo = data.itineraries.buckets[3].items[0].legs[0].origin.name
+        directOriginAirport.textContent = "Origin Airport: " + directOriginAirportInfo
+
+        var directOriginTime = document.getElementById("directOriginTime");
+        var directOriginTimeInfo = data.itineraries.buckets[3].items[0].legs[0].departure
+        directOriginTime.textContent = "Departure Time: " + directOriginTimeInfo
+
+        var directArrivalAirport = document.getElementById("directArrivalAirport");
+        var directArrivalAirportInfo = data.itineraries.buckets[3].items[0].legs[0].destination.name
+        directArrivalAirport.textContent = "Destination Airport: " + directArrivalAirportInfo
+       
+        var directArrivalTime = document.getElementById("directArrivalTime");
+        var directArrivalTimeInfo = data.itineraries.buckets[3].items[0].legs[0].arrival
+        directArrivalTime.textContent = "Arrival Time: " + directArrivalTimeInfo
+
+        var directStopCount = document.getElementById("directStopCount");
+        var directStopCountInfo = data.itineraries.buckets[3].items[0].legs[0].stopCount
+        var directStopAirportInfo = data.itineraries.buckets[3].items[0].legs[0].segments[0].destination.name
+        directStopCount.textContent = "Stops: " + directStopCountInfo + " at " + directStopAirportInfo
+        
+        var directDurationTime = document.getElementById("directDurationTime");
+        var directDurationTimeInfo = data.itineraries.buckets[3].items[0].legs[0].durationInMinutes
+        directDurationTime.textContent = "Flight Total Duration: " + directDurationTimeInfo
+
 
     })
     
@@ -298,7 +316,7 @@ function getIATA(){
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '5d6defba98msh775a120e658e3f8p17e549jsnbb6827dd5252',
+            'X-RapidAPI-Key': '94a28a665fmshcec5c9efbab6820p16ffddjsn1ac873c424b2',
             'X-RapidAPI-Host': 'skyscanner44.p.rapidapi.com'
         }   
     };
